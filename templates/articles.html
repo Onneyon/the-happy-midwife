@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="fixed-action-btn hide-small" style="bottom: 3rem; right: 2rem;">
+  <a class="right scale-trigger btn-floating btn-large waves-effect waves-light yellow lighten-2">
+    <i class="material-icons black-text">menu</i>
+  </a>
+</div>
+
+<div class="fixed-action-btn hide-med hide-large" style="bottom: 3rem; right: 2rem;">
+  <a class="right modal-trigger btn-floating btn-large waves-effect waves-light yellow lighten-2"
+  href="#form-modal">
+    <i class="material-icons black-text">menu</i>
+  </a>
+</div>
+
+<div class="container" style="position:relative;">
+
+  <div id="scale-element" class="card scale-transition scale-out hide-small" style="z-index:3; position:fixed; bottom:8rem; right:3.8rem;">
+    <form action="/articles/" method="post" style="margin-left: 1rem; margin-top: 1rem; margin-right: 1rem;">
+      <div class="card-content" style="padding-bottom:6rem;">
+        {{ filter_form.csrf_token }}
+        <h6>Filter by topic:</h6>
+        {{ filter_form.select_field() }}
+        <h6>Sort by:</h6>
+        {% for subfield in filter_form.radio_field %}
+        <p>
+          <label>
+            {{ subfield }}
+            <span>{{ subfield.data[0].upper() + subfield.data[1:] }}</span>
+          </label>
+        </p>
+        {% endfor %}
+      </div>
+      <div class="card-action">
+        <input type="submit" class="scale-trigger yellow lighten-2 black-text waves-effect waves-light btn" value="Submit">
+      </div>
+    </form>
+  </div>
+
+  <div id="form-modal" class="modal hide-on-med-and-up">
+    <form action="/articles/" method="post" style="margin-left: 1rem; margin-top: 1rem; margin-right: 1rem;">
+      <div class="modal-content" style="padding-bottom:6rem;">
+        {{ filter_form.csrf_token }}
+        <h6>Filter by topic:</h6>
+        {{ filter_form.select_field() }}
+        <h6>Sort by:</h6>
+        {% for subfield in filter_form.radio_field %}
+        <p>
+          <label>
+            {{ subfield }}
+            <span>{{ subfield.data[0].upper() + subfield.data[1:] }}</span>
+          </label>
+        </p>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <input type="submit" class="scale-trigger yellow lighten-2 black-text waves-effect waves-light btn" value="Submit">
+      </div>
+    </form>
+  </div>
+
+  {{ cards|safe }}
+</div>
+{% endblock %}

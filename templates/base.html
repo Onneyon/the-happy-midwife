@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--Materialize CSS-->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='materialize.min.css') }}"
+    media="screen,projection" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Barlow|Quicksand:500|Roboto+Mono|Roboto+Slab&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>THM - {{ page_title }}</title>
+</head>
+
+<body>
+  <!-- Navigation bar -->
+  <nav class="teal darken-4">
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <span href="#" class="brand-logo">thehappymidwife</span>
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          {% for page in pages %}
+          {% if not is_article %}
+          {% if pages[ self._TemplateReference__context.name ][1] == pages[page][1] %}
+          <li class="active">
+            {% else %}
+          <li>
+            {% endif %}
+            {% else %}
+            {% if pages[page][1] == 'Blog' %}
+          <li class="active">
+            {% else %}
+          <li>
+            {% endif %}
+            {% endif %}
+            <a class="tooltipped" data-position="bottom" data-tooltip="{{ pages[page][1] }}"
+              href="{{ pages[page][0] }}">
+              <i class="material-icons">{{ pages[page][2] }}</i>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <ul id="mobile-nav" class="sidenav">
+    {% for page in pages %}
+    {% if not is_article %}
+    {% if pages[ self._TemplateReference__context.name ][1] == pages[page][1] %}
+    <li class="active">
+      {% else %}
+    <li>
+      {% endif %}
+      {% else %}
+      {% if pages[page][1] == 'Blog' %}
+    <li class="active">
+      {% else %}
+    <li>
+      {% endif %}
+      {% endif %}
+      <a href="{{ pages[page][0] }}">
+        <i class="material-icons">{{ pages[page][2] }}</i>{{ pages[page][1] }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Main page content-->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="page-footer teal darken-2">
+    <div>
+      <div class="container">
+        <div style="margin-bottom:2rem;">
+          thehappymidwife.co.uk site &copy; 2019 Alex Coiffait - All article content is the property of its respective
+          author(s)
+          <a class="grey-text text-lighten-4 right hide-on-med-and-down" href="/editor/">Admin</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!--JQuery, Materialize and widget initialiser JS-->
+  <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='materialize.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='widgets.js') }}"></script>
+</body>
+
+</html>

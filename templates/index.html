@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="parallax-container">
+  <div class="parallax">
+    <img src="https://storage.googleapis.com/thehappymidwife.appspot.com/stork.jpg"
+    height="1000px" style="padding-top:6rem;">
+  </div>
+  <div class="row" style="margin-top:2rem;">
+    <div class="col hide-on-small-and-down" style="margin-left:1rem;"></div>
+    <div class="col hide-on-med-and-down" style="margin-left:1rem;"></div>
+    <div id="scale-element" class="col s12 m4 l4 scale-transition scale-out center-align hide-large">
+      {{ cards[1]|safe }}
+    </div>
+    <div class="col s12 m4 l4 center-align hide-on-med-and-down">
+      {{ cards[1]|safe }}
+    </div>
+  </div>
+</div>
+
+<div class="section white">
+  <a class="scale-trigger btn-floating btn-large waves-effect waves-light yellow lighten-2 hide-large"
+  style="left:10%; transform:translate(0, -3rem); position:absolute;">
+    <i class="material-icons black-text">subject</i>
+  </a>
+  <div class="container center-align">
+  <h2 class="grey-text text-darken-3">Welcome</h2>
+    <p class="left-align" style="padding-left:2rem; padding-right:2rem;">
+      Thanks for having a look at my website. I am a midwife working in the NHS and I wanted to start a blog so I could write down the things that go around in my head. I don’t want to make money here or get famous and I definitely don’t have all the answers but I try to be upbeat, hence the title of the happy midwife. 
+      <br>
+      As well as my own blog, I will be inviting midwives and student midwives to write short pieces about anything they want to. I would like everyone to have a voice and for them to know someone is listening. It might only be me who is listening at first, but it’s a start. 
+      <br>
+      I have a few midwifery passions, one is supporting student midwives and my role at work is in clinical placement support. Another passion is being a Professional Midwifery Advocate and I try to support our newly qualified and continuity team midwives as best I can. Finally, I enjoy being a Midwifery Ambassador and visiting schools to promote our great profession. I’ll be visiting one of my old primary school in Yorkshire in January and the other one in March 2020 and so I’ll be writing a blog about that afterwards. 
+      <br>
+    </p>
+    <p class="left-align" style="padding-left:2rem; padding-right:2rem;">
+      Let’s spread a bit of joy and connect with one another.
+    </p>
+    <p class="left-align" style="padding-left:2rem; padding-right:2rem;">
+      Best wishes, 
+    </p>
+    <p class="left-align" style="padding-left:2rem; padding-right:2rem;">
+      Sarah
+    </p>
+  </div>
+</div>
+<div class="parallax-container">
+  <div class="parallax">
+    <img src="https://storage.googleapis.com/thehappymidwife.appspot.com/geeseflipped.jpg"
+    height="800px" style="padding-bottom:2rem;">
+    <!--
+    <div class="row hide-on-small-and-down" style="margin-top:2rem;">
+      <div class="col s12 m4 l4 hide-med">
+
+      </div>
+      <div class="col s12 m6 l4 center-align">
+        {{ cards[0]|safe }}
+      </div>
+      <div class="col s12 m6 l4 center-align">
+        {{ cards[2]|safe }}
+      </div>
+    </div>
+    -->
+  </div>
+  <div class="row hide-on-small-and-down" style="margin-top:2rem; margin-right:4rem;">
+    <div class="col l8 m4"></div>
+    <div class="col l4 m8">
+      {{ cards[2]|safe }}
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="container" style="position:relative;">
+  <div id="scale-element" class="card-panel scale-transition scale-out"
+  style="z-index:3; position:fixed; bottom:8rem; right:3.8rem;">
+    <ul class="center-align">
+      <li><p>test</p></li>
+    </ul>
+  </div>
+-->
+{% endblock %}

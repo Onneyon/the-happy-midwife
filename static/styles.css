@@ -1,0 +1,66 @@
+.brand-logo, h1, h2, h3, h4, h5 {
+  font-family: "Roboto Slab", serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: "Quicksand", sans-serif;
+}
+
+.card-subtitle {
+  font-family: "Quicksand", sans-serif;
+}
+p {
+  font-family: "Barlow", sans-serif;
+}
+
+@media only screen and (min-width: 993px) and (max-width: 5000px) {
+  .hide-large {
+    display:none;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 992px) {
+  .hide-med {
+    display:none;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width:599px) {
+  .hide-small {
+    display:none;
+  }
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.nav-wrapper {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.editor-login-div {
+  height: 500px;
+  position: relative;
+}
+
+.editor-login {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#editor-link:hover {
+  text-decoration: none;
+}
+
+.container > p {
+  font-size: large;
+}

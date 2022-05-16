@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+    <!-- header card -->
+    <div class="card grey lighten-3" style="margin-top:2rem; margin-bottom:3rem; margin-left:2rem; margin-right:2rem;">
+      <div class="card-content">
+        <h3>{{ doc.id }}</h3>
+        <h5 class="grey-text text-darken-1 card-subtitle">{{ doc.to_dict()['author'] }}</h5>
+        <h6 class="grey-text">{{ doc.to_dict()['date'] }}</h6>
+        <div style="margin-top:1rem;">
+        {% for tag in doc.to_dict()['tags'] %}
+          <div class="chip teal darken-1 white-text" style="font-size:15px;">
+            {{ tags[tag] }}
+          </div>
+        {% endfor %}
+      </div>
+      </div>
+    </div>
+
+    <!-- article body -->
+    <div class="container" style="margin-bottom:5rem;">
+      {{ doc.to_dict()['body']|safe }}
+    </div>
+
+    <!-- floating action button -->
+    <div class="fixed-action-btn hide-small" style="bottom: 3rem; right: 2rem;">
+      <a class="right scale-trigger btn-floating btn-large waves-effect waves-light yellow lighten-2">
+        <i class="material-icons black-text">menu</i>
+      </a>
+    </div>
+
+    <div class="fixed-action-btn hide-med hide-large" style="bottom: 4.5rem; right: 2rem;">
+      <a class="right modal-trigger btn-floating btn-large waves-effect waves-light yellow lighten-2"
+      href="#form-modal">
+        <i class="material-icons black-text">menu</i>
+      </a>
+    </div>
+
+    <!-- pop-up menu -->
+    <div class="container" style="position:relative;">
+      <div id="scale-element" class="card-panel scale-transition scale-out"
+      style="z-index:3; position:fixed; bottom:8rem; right:3.8rem;">
+        <ul class="center-align">
+          <li style="margin-bottom:1rem;">
+            <input type="text" value="https://thehappymidwife.co.uk{{ url_for('articles') + doc.id.lower().replace(' ', '-') }}"
+            id="copy-text" style="width:100%;">
+          </li>
+          <li style="margin-bottom:1rem;">
+            <a style="width:80%;"
+            class="yellow lighten-2 black-text waves-effect waves-light btn copy-trigger">Copy link</a>
+          </li>
+          <li><a href="{{ url_for('articles') }}sort/{{ tag_string }}/date" style="width:80%;"
+            class="scale-trigger yellow lighten-2 black-text waves-effect waves-light btn">
+            Related articles</a>
+          </li>
+        </ul>
+      </div>
+
+      <div id="form-modal" class="modal hide-on-med-and-up" style="margin-top:4rem;">
+        <ul class="center-align" style="margin-left:1rem; margin-right:1rem;">
+          <li style="margin-bottom:1rem;">
+            <input type="text" value="https://thehappymidwife.co.uk{{ url_for('articles') + doc.id.lower().replace(' ', '-') }}"
+            id="copy-text" style="width:100%;" class="disabled">
+          </li>
+          <li style="margin-bottom:1rem;">
+            <a style="width:80%;"
+            class="yellow lighten-2 black-text waves-effect waves-light btn copy-trigger">Copy link</a>
+          </li>
+          <li><a href="{{ url_for('articles') }}sort/{{ tag_string }}/date" style="width:80%;"
+            class="modal-trigger yellow lighten-2 black-text waves-effect waves-light btn">
+            Related articles</a>
+          </li>
+        </ul>
+      </div>
+    {% endblock %}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Article Editor</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='materialize.min.css') }}">
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='summernote-lite.css') }}">
+    <script src="{{ url_for('static', filename='summernote-lite.js') }}"></script>
+  </head>
+  <body>
+  {% if logged_in %}
+    <div class="container">
+      <h3>Article Editor</h3>
+
+      <form action="{{ url_for('editor') }}" method="post">
+        {{ editor_form.csrf_token }}
+        <div class="input-field">
+          {{ editor_form.title() }}
+          <label for="title">Article Title</label>
+        </div>
+        <div class="input-field">
+          {{ editor_form.author() }}
+          <label for="title">Author</label>
+        </div>
+        <textarea id="summernote" name="summernote"></textarea>
+        Select tags:
+        {{ editor_form.select_field() }}
+          <div class="switch" style="margin-bottom:1rem;">
+            Feature article on home page
+            <label>
+              {{ editor_form.featured() }}
+              <span class="lever"></span>
+            </label>
+          </div>
+        <input type="submit" value="Post" class="btn">
+      </form>
+
+      <script>
+        $(document).ready(function() {
+          $('#summernote').summernote({
+            toolbar: [
+              ['style', ['style']],
+              ['font', ['bold', 'italic', 'underline']],
+              ['color', ['forecolor']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['table', ['table']],
+              ['insert', ['link', 'picture', 'video']],
+              ['misc', ['undo', 'redo']]
+            ]
+          });
+        });
+      </script>
+
+      <br>
+      <a href="/">Return to site</a>
+    </div>
+    <script src="{{ url_for('static', filename='materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='widgets.js') }}"></script>
+  </body>
+  {% else %}
+  <body>
+    <div class="container center-align">
+      <form action="{{ url_for('editor') }}" method="post" style="margin-top:12rem; margin-left:10rem; margin-right:10rem;">
+        <div>
+          {{ login_form.csrf_token }}
+          {{ login_form.password(type="password", placeholder="Password") }}
+        </div>
+        <br>
+        <input class="btn btn-large" type="submit" value="Log in">
+      </form>
+      <a href="{{ url_for('home') }}" style="position:absolute; bottom:10%; transform:translate(-50%, 0);">Return to site</a>
+    </div>
+  </body>
+  {% endif %}
+</html>
